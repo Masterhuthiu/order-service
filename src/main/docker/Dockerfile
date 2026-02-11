@@ -5,7 +5,8 @@ COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
 RUN chmod +x mvnw
-RUN ./mvnw -B -q -e -DskipTests dependency:go-offline
+RUN ./mvnw -B -DskipTests -Dproperties.skip=true package
+
 
 COPY src src
 RUN ./mvnw -B -DskipTests package
