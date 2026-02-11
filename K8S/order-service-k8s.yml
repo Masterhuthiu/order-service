@@ -1,0 +1,45 @@
+#cat <<EOF > order-service-k8s.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order-service
+          image: docker.io/masterhuthiu/order-service:latest
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+            - name: JHIPSTER_SLEEP
+              value: '10'
+            - name: SPRING_CLOUD_CONSUL_HOST
+              value: consul-server-service
+            - name: SPRING_CLOUD_CONSUL_PORT
+              value: '8500'
+            # Cấu hình chuẩn cho MongoDB thay vì Postgres
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongodb:27017/orderService
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+spec:
+  selector:
+    app: order-service
+  ports:
+    - port: 8082
+      targetPort: 8082
+  type: ClusterIP
+#EOF
