@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "applicationType": "microservice",
+    "authenticationType": "jwt",
+    "baseName": "orderService",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "entities": ["Order", "OrderItem"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "MTAzZjMxN2JlZmFmZTI2ZWNmMWVhNTE3NDhhNTY5YmZlNTBjYzM0ZTY3NGJlZTZmYzg0Mzc4OTBlM2E4YjE3NGUwNzZjODQ0ZDdkMjE2ZWZkYmNhMGFlYzU3NmU3ZTRmY2VkYTIxMjMxMzIxZGY4ZTdmZGIxODNhYzA0YjAxMGQ=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1770789513000,
+    "nativeLanguage": "en",
+    "packageName": "com.mycompany.myapp",
+    "prodDatabaseType": "mongodb",
+    "serverPort": "8082",
+    "serviceDiscoveryType": "consul",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

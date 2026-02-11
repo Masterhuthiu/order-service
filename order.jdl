@@ -1,0 +1,40 @@
+application {
+  config {
+    baseName orderService,
+    applicationType microservice,
+    packageName com.mycompany.myapp,
+    authenticationType jwt,
+    databaseType mongodb,      // Đổi sang MongoDB
+    devDatabaseType mongodb,
+    prodDatabaseType mongodb,
+    serverPort 8082,           // Cổng 8082 để không trùng với Movie Catalog (8081)
+    serviceDiscoveryType consul
+  }
+  entities Order, OrderItem
+}
+
+entity Order {
+  orderDate Instant required,
+  totalAmount BigDecimal required,
+  status OrderStatus required
+}
+
+entity OrderItem {
+  movieId String required,
+  movieTitle String,
+  price BigDecimal required,
+  quantity Integer required
+}
+
+enum OrderStatus {
+    PENDING, PAID, CANCELLED
+}
+
+// Trong MongoDB, JHipster sẽ mặc định lưu OrderItem như một collection riêng
+// hoặc bạn có thể xử lý logic để nhúng (embed) chúng sau này.
+relationship OneToMany {
+  Order{items} to OrderItem{order}
+}
+
+dto * with mapstruct
+service * with serviceClass
