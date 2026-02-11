@@ -1,15 +1,13 @@
 # ===== Stage 1: Build =====
 FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /build
-COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw .
-RUN chmod +x mvnw
-RUN ./mvnw -B -DskipTests -Dproperties.skip=true package
 
+# Copy toàn bộ source luôn (đơn giản & đúng)
+COPY . .
 
-COPY src src
-RUN ./mvnw -B -DskipTests package
+# Skip sonar + test khi build Docker
+RUN ./mvnw -B -DskipTests -Dsonar.skip=true package
+
 
 # ===== Stage 2: Run =====
 FROM eclipse-temurin:21-jre-jammy
