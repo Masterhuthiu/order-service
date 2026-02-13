@@ -1,4 +1,6 @@
-=  Order Microservice Architecture
+== Order Microservice Architecture
+
+image::order-flow.png[Order Creation Flow, width=800, align="center"]
 Master Huthiu <cosa199212@gmail.com>
 v1.0, 2026 
 :toc: left
